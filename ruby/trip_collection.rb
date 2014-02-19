@@ -24,6 +24,30 @@ class TripCollection
     TripCollection.new( trip_ids.map {|id, trip| {id => @trips[id]} } )
   end
 
+  def ids()
+    @trips.keys
+  end
+  def bike_ids()
+    @trips.collect{|k,t| t.bike_id}.uniq{|b| b}
+  end 
+  def durations()
+    @trips.collect{|k,t| t.duration}
+  end
+  def start_ids()
+    @trips.collect{|k,t| t.start_id}.uniq{|s| s}
+  end
+  def end_ids()
+    @trips.collect{|k,t| t.end_id}.uniq{|e| e}
+  end
+  def user_genders()
+    @trips.collect{|k,t| t.user_gender}.uniq{|g| g}
+  end
+  def user_years()
+    @trips.collect{|k,t| t.user_year}.uniq{|y| y}
+  end
+  
+
+
   #--- Bike ID -----
   def trips_by_bike(id)
     TripCollection.new( @trips.select {|k, t| t.bike_id == id} )
